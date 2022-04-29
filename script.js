@@ -5,6 +5,7 @@ let currentComputerScore = 0;
 let selection = document.querySelectorAll('.but');
 const output = document.querySelector('.ans');
 const score = document.querySelector('.score');
+const resetbtn = document.querySelector('.restart');
 
 selection.forEach ((button) => {
     button.addEventListener('click', (event) => {
@@ -12,9 +13,26 @@ selection.forEach ((button) => {
         playerInput = event.target.id;
         output.textContent = playRound(playerInput, computerOutput);
         score.textContent = "Your Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
+        if (currentComputerScore >= 5 || currentPlayerscore >= 5) {
+            output.textContent = winnerOutput();
+            for (let i = 0; selection.length; i++) {
+                selection[i].disabled = true;
+                selection[i].style.backgroundColor = 'red';
+            }  
+        }
     }); 
 });
-    
+
+resetbtn.addEventListener('click', () => {
+    currentPlayerscore = 0;
+    currentComputerScore = 0;
+    score.textContent = "Your Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
+    output.textContent = '';
+    for (let i = 0; selection.length; i++) {
+        selection[i].disabled = false;
+        selection[i].style.removeProperty('background-color');
+    }
+});
 
 function computerPlay() {
     let currentPlay = Math.floor(Math.random() * 3);
@@ -31,14 +49,7 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    // while (playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissors") {
-    //     if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
-    //         break;
-    //     }
-    //     //playerSelection = prompt("Please enter: rock, paper or scissors");
-    // }
     playerSelection = playerSelection.toLowerCase();
-    //console.log(playerSelection + " " + computerSelection);
     if(playerSelection == computerSelection) {
         scoreTracker(0, 0);
         return `Tie`;
@@ -68,22 +79,16 @@ function playRound(playerSelection, computerSelection) {
         return `You Lose! ${computerOutput} beats ${playerSelection}`;
     }
 }
-function game () {
-    //for (let i = 0; i < 5; i++) {
-        //playerInput = prompt("Please enter: rock, paper or scissors");
-        //console.log(playRound(playerInput, computerOutput));
-        computerOutput = computerPlay();
-    //}
-    //console.log(currentPlayerscore+" "+currentComputerScore);
+function winnerOutput () {
     
     if(currentPlayerscore > currentComputerScore) {
-        return 'You Win!';
+        return 'Lets goooo, You Win!';
     }
     else if (currentPlayerscore == currentComputerScore) {
-        return 'Its a Tie';
+        return 'Oh Well, Its a Tie';
     }
     else{
-        return 'Computer Won!';
+        return 'Oh dam it, Computer Won!';
     }
 }
 
@@ -92,4 +97,4 @@ function scoreTracker (playerScore, computerScore) {
     currentComputerScore = computerScore + currentComputerScore;
 }
 
-//console.log(game());
+

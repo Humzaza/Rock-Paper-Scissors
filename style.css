@@ -26,6 +26,7 @@ body {
     border-radius: 20px;
     text-align: center;
     padding: 30px;
+    height: 70%;
 }
 .buttons {
     background-color: rgba(255, 255, 255, 0.212);
@@ -33,10 +34,34 @@ body {
     margin: 0 20% 0 20%;
     border-radius: 20px;
     padding: 40px;
+    margin-top: 50px;
 }
 .ans {
     padding: 20px 0 20px 0;
 }
 .score {
-    padding: 0 0 20px 0;
+    padding: 20px 0 20px 0;
+}
+.but, .restart{
+    background-color: rgba(128, 128, 128, 0.234);
+    color: white;
+    width: 30%;
+    height: 30px;
+    font-size: 40%;
+    font-weight: 500;
+    border: 0;
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+    box-shadow: 0 0 30px #000000;
+    cursor: pointer;
+}
+.but:hover, .restart:hover{
+    transition: 0.2s;
+    background-color: gray;
+}
+
+.but:active, .restart:active {
+    transform: scale(0.98);
+    transition: 0.2s;
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
