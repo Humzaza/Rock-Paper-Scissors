@@ -11,6 +11,7 @@ selection.forEach ((button) => {
     button.addEventListener('click', (event) => {
         computerOutput = computerPlay();
         playerInput = event.target.id;
+        output.style.border = '0.7px solid red';
         output.textContent = playRound(playerInput, computerOutput);
         score.textContent = "Your Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
         if (currentComputerScore >= 5 || currentPlayerscore >= 5) {
@@ -18,7 +19,7 @@ selection.forEach ((button) => {
             for (let i = 0; selection.length; i++) {
                 selection[i].disabled = true;
                 selection[i].style.backgroundColor = 'red';
-            }  
+            }   
         }
     }); 
 });
@@ -28,6 +29,7 @@ resetbtn.addEventListener('click', () => {
     currentComputerScore = 0;
     score.textContent = "Your Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
     output.textContent = '';
+    output.style.removeProperty('border');
     for (let i = 0; selection.length; i++) {
         selection[i].disabled = false;
         selection[i].style.removeProperty('background-color');
