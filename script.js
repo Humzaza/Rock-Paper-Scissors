@@ -1,7 +1,20 @@
-let playerInput ;// prompt("Please enter: rock, paper or scissors");
+let playerInput;// prompt("Please enter: rock, paper or scissors");
 let computerOutput = computerPlay();
 let currentPlayerscore = 0;
 let currentComputerScore = 0;
+let selection = document.querySelectorAll('.but');
+const output = document.querySelector('.ans');
+const score = document.querySelector('.score');
+
+selection.forEach ((button) => {
+    button.addEventListener('click', (event) => {
+        computerOutput = computerPlay();
+        playerInput = event.target.id;
+        output.textContent = playRound(playerInput, computerOutput);
+        score.textContent = "Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
+    }); 
+});
+    
 
 function computerPlay() {
     let currentPlay = Math.floor(Math.random() * 3);
@@ -18,16 +31,16 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    while (playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissors") {
-        if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
-            break;
-        }
-        playerSelection = prompt("Please enter: rock, paper or scissors");
-    }
+    // while (playerSelection != "rock" || playerSelection != "paper" || playerSelection != "scissors") {
+    //     if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
+    //         break;
+    //     }
+    //     //playerSelection = prompt("Please enter: rock, paper or scissors");
+    // }
     playerSelection = playerSelection.toLowerCase();
-    console.log(playerSelection + " " + computerSelection);
+    //console.log(playerSelection + " " + computerSelection);
     if(playerSelection == computerSelection) {
-        scoreTracker(1, 1);
+        scoreTracker(0, 0);
         return `Tie`;
     }
     else if (playerSelection == "paper" && computerSelection == "rock") {
@@ -56,12 +69,12 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 function game () {
-    for (let i = 0; i < 5; i++) {
-        playerInput = prompt("Please enter: rock, paper or scissors");
-        console.log(playRound(playerInput, computerOutput));
+    //for (let i = 0; i < 5; i++) {
+        //playerInput = prompt("Please enter: rock, paper or scissors");
+        //console.log(playRound(playerInput, computerOutput));
         computerOutput = computerPlay();
-    }
-    console.log(currentPlayerscore+" "+currentComputerScore);
+    //}
+    //console.log(currentPlayerscore+" "+currentComputerScore);
     
     if(currentPlayerscore > currentComputerScore) {
         return 'You Win!';
@@ -78,4 +91,5 @@ function scoreTracker (playerScore, computerScore) {
     currentPlayerscore = playerScore + currentPlayerscore;
     currentComputerScore = computerScore + currentComputerScore;
 }
-console.log(game());
+
+//console.log(game());
