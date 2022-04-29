@@ -11,7 +11,7 @@ selection.forEach ((button) => {
         computerOutput = computerPlay();
         playerInput = event.target.id;
         output.textContent = playRound(playerInput, computerOutput);
-        score.textContent = "Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
+        score.textContent = "Your Score: " + currentPlayerscore + " Computer Score: " + currentComputerScore; 
     }); 
 });
     
